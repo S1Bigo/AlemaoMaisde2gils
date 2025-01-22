@@ -109,7 +109,7 @@ B365mais = st.number_input(
 )
 
 B365menos = st.number_input(
-    'B365menos', 'B365 2 gols ou menos'
+    'B365menos', 'B365 2 gols ou menos',
     min_value=1.0,
     max_value=7.0,
     step=0.1
