@@ -78,7 +78,7 @@ dados_consulta['sofreu_no_jogo_passado_mandante(0=Nao)'] = dados_consulta.groupb
 dados_consulta['sofreu_no_jogo_passado_visitante(0=Nao)'] = dados_consulta.groupby(['Time_Visitante', 'Temporada'])['Gols_Mandante'].shift(1).apply(lambda x: 0 if x == 0 else 1)
 
 
-with open('modelo_AlemaoVisitanteMarca.pkl', 'rb') as f:
+with open('modelo_AlemaoMaisde2Gols.pkl', 'rb') as f:
        modelo = pickle.load(f)
 
 
