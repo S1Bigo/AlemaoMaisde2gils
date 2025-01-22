@@ -101,6 +101,20 @@ Time_Visitante = st.selectbox(
     "Time Visitante:",
     (dados_consulta['Time_Visitante'].unique()), key="visitante")
 
+B365mais = st.number_input(
+    'B365mais', 'B365mais de 2 gols',
+    min_value=1.0,
+    max_value=7.0,
+    step=0.1
+)
+
+B365menos = st.number_input(
+    'B365menos', 'B365 2 gols ou menos'
+    min_value=1.0,
+    max_value=7.0,
+    step=0.1
+)
+
 Temporada = int(2025)
 
 if Time_Mandante and Time_Visitante and Temporada:
@@ -120,8 +134,8 @@ if Time_Mandante and Time_Visitante and Temporada:
            'Escanteio_Sofridos_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
                     'Chute_a_Gol_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Mandante'].mean()],
                     'Chute_a_Gol_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Visitante'].mean()],
-                    'B365mais':  [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Time_Visitante'] == Time_Visitante)]['B365mais']],
-                    'B365menos': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Time_Visitante'] == Time_Visitante)]['B365menos']]
+                    'B365mais':  [B365mais],
+                    'B365menos': [B365menos]
     }
 
 nova_previsao_df = pd.DataFrame(nova_previsao)
