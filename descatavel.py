@@ -141,8 +141,3 @@ if st.button('Prever'):
         st.session_state['dados_previsao'] = None  # Reseta os dados da previsão na session_state
         st.experimental_rerun()  # Recarrega a página
 
-!python -m venv my_new_env
-!source my_new_env/bin/activate
-!pip install xgboost==2.1.3
-!pip install streamlit
-
