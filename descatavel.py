@@ -118,8 +118,8 @@ if Time_Mandante and Time_Visitante and Temporada:
                     'Escanteio_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Mandante'].mean()],
                   'Escanteio_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
            'Escanteio_Sofridos_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
-                    'Chute_a_Gol_Mandante_Media': : [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Mandante_Media'].mean()],,
-                    'Chute_a_Gol_Visitante_Media': : [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Visitante_Media'].mean()],,
+                    'Chute_a_Gol_Mandante_Media': : [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Mandante_Media'].mean()],
+                    'Chute_a_Gol_Visitante_Media': : [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Visitante_Media'].mean()],
                     'B365mais':  [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Time_Visitante'] == Time_Visitante)]['B365mais']],
                     'B365menos': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Time_Visitante'] == Time_Visitante)]['B365menos']]
     }
