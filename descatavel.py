@@ -102,7 +102,7 @@ Time_Visitante = st.selectbox(
     (dados_consulta['Time_Visitante'].unique()), key="visitante")
 
 B365mais = st.number_input(
-    'B365mais de 2,5 gols',
+    'B365 mais de 2,5 gols',
     min_value=1.0,
     max_value=7.0,
     step=0.1
