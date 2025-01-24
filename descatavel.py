@@ -150,6 +150,10 @@ if st.button('Prever'):
     st.session_state['dados_previsao'] = previsao
     st.write(f"Previsão: {'Marcará Sim' if previsao[0] == 1 else 'Não Marcará'}")
 
+    # Display nova_previsao_df
+    st.write("Dados da Previsão:")  # Add a title for clarity
+    st.dataframe(nova_previsao_df)
+
     if st.button("Resetar"):
         st.session_state.previsao_feita = None  # Reseta a previsão na session_state
         st.session_state['dados_previsao'] = None  # Reseta os dados da previsão na session_state
