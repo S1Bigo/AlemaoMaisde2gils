@@ -57,7 +57,7 @@ column_mapping = {
 }
 
 dados_consulta.rename(columns=column_mapping, inplace=True)
-dados_consulta = dados_consulta.sort_values(by=['Data'])
+
 
 colunas_para_remover = [
     'B365H', 'B365D', 'B365A', 'BWH', 'BWD', 'BWA', 'PSH', 'PSD', 'PSA', 'WHH', 'WHD', 'WHA',
