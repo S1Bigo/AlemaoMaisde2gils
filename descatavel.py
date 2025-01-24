@@ -72,10 +72,10 @@ colunas_para_remover = [
 ]
 dados_consulta = dados_consulta.drop(columns=colunas_para_remover)
 
-dados_consulta['marcou_no_jogo_passado_mandante(0=Nao)'] = dados_consulta.groupby(['Time_Mandante', 'Temporada'])['Gols_Mandante'].shift(1).apply(lambda x: 0 if x == 0 else 1)
-dados_consulta['marcou_no_jogo_passado_visitante(0=Nao)'] = dados_consulta.groupby(['Time_Visitante', 'Temporada'])['Gols_Visitante'].shift(1).apply(lambda x: 0 if x == 0 else 1)
-dados_consulta['sofreu_no_jogo_passado_mandante(0=Nao)'] = dados_consulta.groupby(['Time_Mandante', 'Temporada'])['Gols_Visitante'].shift(1).apply(lambda x: 0 if x == 0 else 1)
-dados_consulta['sofreu_no_jogo_passado_visitante(0=Nao)'] = dados_consulta.groupby(['Time_Visitante', 'Temporada'])['Gols_Mandante'].shift(1).apply(lambda x: 0 if x == 0 else 1)
+dados_consulta['mandante_marcou'] = dados_consulta['Gols_Mandante'].apply(lambda x: 0 if x == 0 else 1)
+dados_consulta['visitante_marcou'] = dados_consulta['Gols_Visitante'].apply(lambda x: 0 if x == 0 else 1)
+dados_consulta['mandante_sofreu'] = dados_consulta['Gols_Visitante'].apply(lambda x: 0 if x == 0 else 1)
+dados_consulta['visitante_sofreu'] = dados_consulta['Gols_Mandante'].apply(lambda x: 0 if x == 0 else 1)
 
 
 with open('modelo_AlemaoMaisde2Gols.pkl', 'rb') as f:
@@ -121,14 +121,14 @@ if Time_Mandante and Time_Visitante and Temporada:
     nova_previsao = {'Gols_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Gols_Mandante'].mean()],
                   'Gols_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Gols_Visitante'].mean()],
            'Gols_Sofridos_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Gols_Mandante'].mean()],
-           'media_partidas_marcando_mandante': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['marcou_no_jogo_passado_mandante(0=Nao)'].mean()],
-           'media_partidas_marcando_visitante': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['marcou_no_jogo_passado_visitante(0=Nao)'].mean()],
-           'media_partidas_sofrendo_mandante': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['sofreu_no_jogo_passado_mandante(0=Nao)'].mean()],
-                  'media_partidas_sofrendo_visitante': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['sofreu_no_jogo_passado_visitante(0=Nao)'].mean()],
-           'marcou_no_jogo_passado_mandante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Mandante'] == Time_Mandante].index[-1], 'marcou_no_jogo_passado_mandante(0=Nao)']],
-                  'marcou_no_jogo_passado_visitante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Visitante'] == Time_Visitante].index[-1], 'marcou_no_jogo_passado_visitante(0=Nao)']],
-           'sofreu_no_jogo_passado_mandante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Mandante'] == Time_Mandante].index[-1], 'marcou_no_jogo_passado_visitante(0=Nao)']],
-                  'sofreu_no_jogo_passado_visitante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Visitante'] == Time_Visitante].index[-1], 'marcou_no_jogo_passado_mandante(0=Nao)']],
+           'media_partidas_marcando_mandante': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['mandante_marcou'].mean()],
+           'media_partidas_marcando_visitante': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['visitante_marcou'].mean()],
+           'media_partidas_sofrendo_mandante': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['visitante_marcou'].mean()],
+                  'media_partidas_sofrendo_visitante': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['mandante_marcou'].mean()],
+           'marcou_no_jogo_passado_mandante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Mandante'] == Time_Mandante].index[-1], 'mandante_marcou']],
+                  'marcou_no_jogo_passado_visitante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Visitante'] == Time_Visitante].index[-1], 'visitante_marcou']],
+           'sofreu_no_jogo_passado_mandante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Mandante'] == Time_Mandante].index[-1], 'visitante_marcou']],
+                  'sofreu_no_jogo_passado_visitante(0=Nao)': [dados_consulta.loc[dados_consulta[dados_consulta['Time_Visitante'] == Time_Visitante].index[-1], 'mandante_marcou']],
                     'Escanteio_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Mandante'].mean()],
                   'Escanteio_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
            'Escanteio_Sofridos_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
