@@ -75,9 +75,9 @@ colunas_para_remover = [
 ]
 dados_consulta = dados_consulta.drop(columns=colunas_para_remover)
 
-dados['Mandante_Marcou'] = dados['Gols_Mandante'].apply(lambda x: 0 if x == 0 else 1)
-dados['Visitante_Marcou'] = dados['Gols_Visitante'].apply(lambda x: 0 if x == 0 else 1)
-dados['Partidas_mais_de_2gols'] = ((dados['Gols_Mandante'] + dados['Gols_Visitante']) > 2).astype(int)
+dados_consulta['Mandante_Marcou'] = dados_consulta['Gols_Mandante'].apply(lambda x: 0 if x == 0 else 1)
+dados_consulta['Visitante_Marcou'] = dados_consulta['Gols_Visitante'].apply(lambda x: 0 if x == 0 else 1)
+dados_consulta['Partidas_mais_de_2gols'] = ((dados_consulta['Gols_Mandante'] + dados_consulta['Gols_Visitante']) > 2).astype(int)
 
 
 with open('modelo_AlemaoMaisde2Gols.pkl', 'rb') as f:
