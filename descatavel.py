@@ -11,7 +11,10 @@ import pandas as pd
 import streamlit as st
 import pickle
 import xgboost as xgb
+import ssl
 
+# Desativa a verificação SSL
+ssl._create_default_https_context = ssl._create_unverified_context
 
 dados_consulta = pd.read_csv('https://www.football-data.co.uk/mmz4281/2425/D1.csv')
 dados_consulta['Temporada'] = '2025'
