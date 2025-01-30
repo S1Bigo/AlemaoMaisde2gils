@@ -135,14 +135,14 @@ if Time_Mandante and Time_Visitante and Temporada:
                   'Escanteio_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
            'Escanteio_Sofridos_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Visitante'].mean()],
                   'Escanteio_Sofridos_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Escanteio_Mandante'].mean()],
+                     'B365mais':  [B365mais],
+                    'B365menos': [B365menos],
                  'Partidas_mais_de_2gols_mandante': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Partidas_mais_de_2gols'].mean()],
                  'Partidas_mais_de_2gols_visitante': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Partidas_mais_de_2gols'].mean()],
                  'Faltas_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Faltas_Mandante'].mean()],
                  'Faltas_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Faltas_Visitante'].mean()],
                  'Chute_a_Gol_Mandante_Media': [dados_consulta[(dados_consulta['Time_Mandante'] == Time_Mandante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Mandante'].mean()],
-                 'Chute_a_Gol_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Visitante'].mean()],
-                 'B365mais':  [B365mais],
-                    'B365menos': [B365menos]
+                 'Chute_a_Gol_Visitante_Media': [dados_consulta[(dados_consulta['Time_Visitante'] == Time_Visitante) & (dados_consulta['Temporada'] == Temporada)]['Chute_a_Gol_Visitante'].mean()]
     }
 
 nova_previsao_df = pd.DataFrame(nova_previsao)
